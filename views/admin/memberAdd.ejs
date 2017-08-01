@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<!--批量添加-->
+<!--单条添加-->
+<a href="/member/excel" class="btn btn-default">导入excel表</a>
+<form action="/member/memberAddCon">
+    <div>
+        选择所属部门
+        <select class="form-control" name="bumenid">
+            <option value="0">一级部门</option>
+            <%- data %>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">职务</label>
+        <input type="text" class="form-control" placeholder="name" name="zhiwu">
+    </div>
+
+    <div class="form-group">
+        <label for="exampleInputEmail1">姓名 </label>
+        <input type="text" class="form-control" placeholder="name" name="name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">编号</label>
+        <input type="text" class="form-control" placeholder="name" name="numbers">
+    </div>
+    <div class="form-group">
+        <label for="">
+            性别
+        </label>
+        <div class="radio">
+            <label>
+                <input type="radio" name="sex"  value="1" checked>
+               man
+            </label>
+
+            <label>
+                <input type="radio" name="sex"  value="woman">
+                woman
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">联系方式 </label>
+            <input type="text" class="form-control" placeholder="name" name="phone">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">email </label>
+            <input type="email" class="form-control" placeholder="name" name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">qq </label>
+            <input type="text" class="form-control" placeholder="name" name="qq">
+        </div>
+
+        <!--
+            在职  离职   休假
+             0      1     2
+        -->
+    </div>
+
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</body>
+</html>

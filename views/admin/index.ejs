@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        html,body{
+            height:100%;overflow: hidden;
+        }
+        .jumbotron{
+            height:20%;
+        }
+        .container-fluid{
+            height:80%;
+        }
+        .row,.left,.right{
+            height:100%;
+        }
+
+        .left{
+            border-right:1px solid #000;
+        }
+        iframe{
+            width:100%;height:100%;}
+    </style>
+</head>
+<body>
+<div class="jumbotron" style="margin:0">
+    <h1 class="text-center" style="line-height: 50px;padding:0;margin:0;font-size:40px;">Hello, world!</h1>
+    <a href="/login/logout" style="position: absolute;right:20px;top:50px;">退出</a>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-4 col-sm-3 left">
+            <ul>
+                <li class="opts">
+                    <a href="javascript:;">管理员</a>
+                    <ul class="son">
+                        <li>
+                            <a href="/user/add" target="main">添加管理员</a>
+                        </li>
+                        <li>
+                            <a href="/user/show"target="main">查看管理员</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="opts">
+                    <a href="javascript:;">员工管理</a>
+                    <ul class="son">
+                        <li>
+                            <a href="/member/add" target="main">添加新员工</a>
+                        </li>
+                        <li>
+                            <a href="/user/show"target="main">管理员工</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="opts">
+                    <a href="javascript:;">部门管理</a>
+                    <ul class="son">
+                        <li>
+                            <a href="/bumen/add" target="main">添加部门</a>
+                        </li>
+                        <li>
+                            <a href="/user/show"target="main">管理部门</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="opts">
+                    <a href="javascript:;">新闻管理</a>
+                    <ul class="son">
+
+                        <li>
+                            <a href="/news/addCat" target="main">添加分类</a>
+                        </li>
+                        <li>
+                            <a href="/news/add" target="main">管理分类</a>
+                        </li>
+                        <li>
+                            <a href="/news/add" target="main">添加新闻</a>
+                        </li>
+                        <li>
+                            <a href="/user/show"target="main">查看新闻</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-8 col-sm-9 right">
+            <iframe src="" frameborder="0" name="main"></iframe>
+        </div>
+    </div>
+</div>
+</body>
+</html>

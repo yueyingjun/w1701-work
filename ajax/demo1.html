@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--
+       无刷新的可以获取到 其他页面的内容
+       一、跨域
+       1. jsonp
+         a. script 是可以获取不同域的内容
+         b. 他会把取回来的内容当做js代码去执行
+       2. 缺陷
+
+          获取到baidu的东西,客户端和服务器我们自己都能控制
+
+          或者 百度 提供了一个接口
+
+       3.  提供了接口  百度 接口
+           你可以操作服务器
+
+        二、跨域并且没有指定的接口
+
+        1. 代理的方式  nodejs
+
+
+
+
+ -->
+    <script>
+        function cc(str){
+              window.onload=function() {
+                  document.body.innerHTML = str;
+              }
+        }
+    </script>
+    <script src="http://localhost:8888?callback=cc"></script>
+
+
+
+
+</head>
+<body>
+
+</body>
+</html>

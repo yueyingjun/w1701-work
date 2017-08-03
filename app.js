@@ -14,6 +14,7 @@ var user = require('./routes/admin/user');
 var member = require('./routes/admin/member');
 var bumen = require('./routes/admin/bumen');
 var news = require('./routes/admin/news');
+var ajax = require('./routes/index/ajax');
 
 var app = express();
 app.listen(8888,function () {
@@ -26,7 +27,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,15 +42,9 @@ app.use('/user', user);
 app.use('/member', member);
 app.use('/bumen', bumen);
 app.use('/news', news);
+app.use('/ajax', ajax);
 
-app.get("/ajax",function(req,res){
 
-   var url=req.query.url;
-   request(url,function(err,head,body){
-      var $=cheerio.load(body);
-      res.end($(".projects-header h2").html());
-   })
-})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -68,5 +63,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 

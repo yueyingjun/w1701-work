@@ -1,0 +1,57 @@
+<style>
+    .view-animate {
+        width:100%;
+        transition:top .3s ease;
+        position: absolute;
+    }
+    .view-animate.ng-enter, .view-animate.ng-leave {
+
+        display:block;
+
+        top:0;
+    }
+
+    .view-animate.ng-enter {
+        top:100%;
+    }
+    .view-animate.ng-enter.ng-enter-active {
+        top:0;
+    }
+    .view-animate.ng-leave.ng-leave-active {
+        top:-100%;
+    }
+
+    img{
+        width:100%;
+    }
+
+    .mui-content{
+        overflow-x: hidden;
+        padding:10px;
+    }
+
+    img[src*=w16_h16]{
+        width:16px;
+    }
+
+</style>
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">xxapp</h1>
+</header>
+<div class="mui-content">
+<ul class="mui-table-view">
+    <li class="mui-table-view-cell mui-collapse" ng-repeat="item in data track by $index">
+        <a class="mui-navigate-right" href="javascript:;" ng-click="toggle(item)">
+            {{item.parent}}
+        </a>
+        <div class="son" ng-show="!item.flag" >
+            <div class="mui-collapse-content" style="display: block" ng-repeat="son in item.son track by son.id">
+                <p>
+                    <a href="#!/member/{{son.id}}">{{son.name}}</a>
+                </p>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

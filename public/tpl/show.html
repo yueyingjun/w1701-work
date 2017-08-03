@@ -1,0 +1,45 @@
+<style>
+    .view-animate {
+        width:100%;
+        transition:left .3s ease;
+        position: absolute;
+    }
+    .view-animate.ng-enter, .view-animate.ng-leave {
+
+        display:block;
+
+        left:0;
+    }
+
+    .view-animate.ng-enter {
+        left:100%;
+    }
+    .view-animate.ng-enter.ng-enter-active {
+        left:0;
+    }
+    .view-animate.ng-leave.ng-leave-active {
+        left:-100%;
+    }
+
+    img{
+        width:100%;
+    }
+    
+    .mui-content{
+        overflow-x: hidden;
+        padding:10px;
+    }
+
+    img[src*=w16_h16]{
+        width:16px;
+    }
+    
+</style>
+
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">xxapp</h1>
+</header>
+<div class="mui-content" ng-bind-html="content.con">
+
+</div>

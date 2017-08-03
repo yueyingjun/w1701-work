@@ -6,30 +6,24 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/mui.min.css">
+    <script src="/js/swiper.min.js"></script>
+    <script src="/js/mui.min.js"></script>
+
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-sanitize.min.js"></script>
+    <script src="/js/angular-route.min.js"></script>
+    <script src="/js/angular-animate.min.js"></script>
+    <script src="/js/route.js"></script>    <script src="/js/service.js"></script>
+
+    <script src="/js/controller.js"></script>
+    <script src="/js/app.js"></script>
+
 </head>
-<body>
- 首页
+<body ng-app="myapp">
+     <div ng-view class="view-animate">
 
- //1.  浏览器 同源策略
-
- //2. jsonp  不行
-
- //3. 代理  可以解决一切跨域的问题
-
- <script>
-     var xml=new XMLHttpRequest();
-
-     xml.onload=function(){
-         document.querySelector("div").innerHTML=xml.response;
-     }
-     xml.open("get","http://localhost:8888/ajax?url=http://www.bootcss.com/");
-
-     xml.send();
- </script>
-
-<div style="width:200px;height:200px;
-border:1px solid red"></div>
-
-<button>获取</button>
+     </div>
 </body>
 </html>

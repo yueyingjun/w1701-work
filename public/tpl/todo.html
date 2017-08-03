@@ -1,0 +1,18 @@
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">to do</h1>
+    <a class="mui-icon mui-icon-compose mui-pull-right" href="#!/todo/add"></a>
+</header>
+
+<div class="mui-content">
+    <ul class="mui-table-view">
+        <li class="mui-table-view-cell">
+            <a class="mui-navigate-right" ng-repeat="item in data" href="#!/todo/edit/{{item.id}}">
+               {{item.con}}
+            </a>
+        </li>
+    </ul>
+    <ul ng-show="data.length==0">
+        没有内容
+    </ul>
+</div>

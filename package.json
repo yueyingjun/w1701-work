@@ -23,6 +23,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "angular-sanitize": "^1.6.5",
     "bootstrap": "^3.3.7"
   }
 }

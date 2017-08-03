@@ -1,0 +1,32 @@
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">详情</h1>
+</header>
+<div class="mui-content">
+<ul class="mui-table-view">
+    <li class="mui-table-view-cell mui-media">
+        <a href="javascript:;">
+            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+            <div class="mui-media-body">
+               {{data.bname}}  {{data.zhiwu}}  {{data.name}}
+            </div>
+        </a>
+    </li>
+    <li class="mui-table-view-cell mui-media">
+        <a href="javascript:;">
+            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+            <div class="mui-media-body">
+                {{data.qq}}
+            </div>
+        </a>
+    </li>
+    <li class="mui-table-view-cell mui-media">
+        <a href="tel:{{data.phone}}">
+            <img class="mui-media-object mui-pull-left" src="http://placehold.it/40x30">
+            <div class="mui-media-body">
+                {{data.phone}}
+            </div>
+        </a>
+    </li>
+</ul>
+</div>

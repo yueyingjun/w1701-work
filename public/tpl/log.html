@@ -1,0 +1,110 @@
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<style>
+    header{
+        width:100%;height:1.2rem;
+        background: #ccc;
+        text-align: center;
+        line-height: 1.2rem;
+    }
+    .back{
+        position: absolute;
+        left:10px;
+    }
+    .box{
+        width:7.5rem;height:2.5rem;
+
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .list{
+        box-sizing: border-box;
+        width:2.5rem;border-right:1px
+    solid #ccc;height:2.5rem;
+        font-size:40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-bottom:1px solid #ccc;
+
+    }
+    span{
+        font-size: 18px;margin-top:5px;
+    }
+    footer{
+        width:7.5rem;height:1.2rem;
+        display: flex;position: fixed;
+        bottom: 0;background: #ccc;
+        align-items: center;
+    }
+    footer .div{
+        width:50%;
+        text-align: center;
+
+    }
+    footer .div:nth-child(1){
+        border-right:1px solid #fff;
+    }
+
+</style>
+<header>
+    <span class="back" ng-click="back()">
+    <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-ribao"></use>
+    </svg>
+        </span>
+     <span>报表</span>
+</header>
+<div class="box">
+     <div class="list">
+         <svg class="icon" aria-hidden="true">
+             <use xlink:href="#icon-ribao"></use>
+         </svg>
+         <span>日报</span>
+     </div>
+    <div class="list">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>
+        <span>月报</span>
+    </div>
+    <div class="list">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>
+        <span>年报</span>
+    </div>
+    <div class="list">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>
+        <span>年报</span>
+    </div>
+    <div class="list">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>
+        <span>年报</span>
+    </div>
+    <div class="list">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>
+        <span>年报</span>
+    </div>
+</div>
+
+<footer>
+    <a href="#!/log/write" class="div">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg> 写日志
+    </a>
+    <a href="" class="div">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-ribao"></use>
+        </svg>  查看日志
+    </a>
+</footer>

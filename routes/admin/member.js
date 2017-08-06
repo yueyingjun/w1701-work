@@ -2,6 +2,7 @@
 var express = require('express');
 var tree = require("../common/tree");
 var mysql = require("../common/mysql");
+var md5 = require("../common/md5");
 var xlsx = require("node-xlsx");
 var multer = require('multer');
 var storage = multer.diskStorage({
@@ -32,9 +33,10 @@ router.get("/memberAddCon", function (req, res) {
     var name = req.query.name;
     var phone = req.query.phone;
     var sex = req.query.sex;
+    var pass=md5("123456");
     var state = 0;
     var numbers = req.query.numbers;
-    var info = {bumenid, zhiwu, qq, email, name, phone, sex, state, numbers};
+    var info = {bumenid, zhiwu, qq, email, name, phone, sex, state, numbers,pass};
     mysql.query("insert into member set ?", info, function (err, result) {
         if (err) {
             console.log("err");
@@ -106,14 +108,14 @@ router.post("/upload", upload.single('file'), function (req, res, next) {
             }
 
             arr1.push(obj[data[i][4]])  //部门id
-
+            arr1.push(md5("123456"))
             arr.push(arr1);
 
         }
 
         console.log(arr);
 
-        mysql.query("replace into member (name,numbers,zhiwu,sex,phone,email,qq,state,bumenid) values ? ",[arr],function(err){
+        mysql.query("replace into member (name,numbers,zhiwu,sex,phone,email,qq,state,bumenid,pass) values ? ",[arr],function(err){
             if(err){
                 console.log("err");
             }else{

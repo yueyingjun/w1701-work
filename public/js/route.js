@@ -27,5 +27,17 @@ angular.module("route",["ngRoute"])
      }).when("/todo/edit/:cid",{
          templateUrl:"/tpl/todoEdit.html",
          controller:"todoEdit"
+     }).when("/log",{
+         templateUrl:"/tpl/log.html",
+         controller:"log"
+     }).when("/log/write",{
+         templateUrl:"/tpl/logWrite.html",
+         controller:"logWrite"
+     }).when("/log/select",{
+         templateUrl:"/tpl/select.html",
+         controller:"select"
+     }).when("/login",{
+         templateUrl:"/tpl/login.html",
+         controller:"login"
      })
 }])

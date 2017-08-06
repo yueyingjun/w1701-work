@@ -1,0 +1,22 @@
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">选择</h1>
+</header>
+<div class="mui-content">
+<ul class="mui-table-view">
+    <li class="mui-table-view-cell mui-collapse" ng-repeat="item in data track by $index">
+        <a class="mui-navigate-right" href="javascript:;" ng-click="toggle(item)">
+            {{item.parent}}
+        </a>
+        <div class="son" ng-show="!item.flag" >
+            <div class="mui-collapse-content" style="display: block" ng-repeat="son in item.son track by son.id">
+                <p>
+                    <a href="javascript:;" ng-click="add($event,son.id,son.name)">{{son.name}}</a>
+                </p>
+            </div>
+        </div>
+    </li>
+</ul>
+
+    <a type="button" class="mui-btn mui-btn-primary" href="#!/log/write">确认</a>
+</div>

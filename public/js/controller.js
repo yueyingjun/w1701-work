@@ -15,11 +15,50 @@ angular.module("controller",["service"])
     $scope.save=function(){
         localStorage.welcome="yes";
     }
-}]).controller("index",["$scope","$http",function($scope,$http){
-   $http({url:"/ajax/select",method:"get",dataType:"text"}).then(function(e){
-       $scope.data=e.data;
+}]).controller("index",["$scope","$http","Me",function($scope,$http,Me){
+   $http({url:"/ajax/check",dataType:"text"}).then(function(e){
+        if(e.data=="ok"){
+            $http({url:"/ajax/select",method:"get",dataType:"text"}).then(function(e){
+                $scope.data=e.data;
+                $scope.name=Me.name;
+            })
+        }else{
+            location.href="#!/login";
+
+        }
    })
-}]).controller("show",["$scope","$http","$routeParams","fns",function($scope,$http,$routeParams,fns){
+
+
+
+    $scope.jump=function(e){
+       var url=(e.target.parentNode.getAttribute("href"));
+       location.href=url;
+    }
+}]).controller("login",function ($scope,$http,Me) {
+
+
+
+    $scope.login=function() {
+        var name=$scope.name;
+        var pass=$scope.pass;
+        $http({url: "/ajax/login", method: "get", params: {name, pass}}).then(function (e) {
+            var data=e.data;
+            console.log(data);
+            if(data.message=="ok"){
+                Me.id=data.id;
+                Me.name=data.name;
+
+                localStorage.Me=JSON.stringify(Me);
+                location.href="#!/index"
+            }else{
+               $scope.name="";
+               $scope.pass="";
+            }
+
+        })
+    }
+
+}).controller("show",["$scope","$http","$routeParams","fns",function($scope,$http,$routeParams,fns){
     var id=$routeParams.id;
 
     $http({url:"/ajax/select/"+id}).then(function(e){
@@ -91,9 +130,45 @@ angular.module("controller",["service"])
 }]).controller("todo",["$scope","fns","Todo",function($scope,fns,Todo){
     $scope.back=fns.back;
     $scope.data=Todo;
-    mui(".mui-content").on('drag',".mui-navigate-right",function(e){
-        console.log(e);
+
+    var init=0;
+    mui(".mui-content").on("dragstart",".mui-navigate-right",function(e){
+            init=this.style.left?parseInt(this.style.left):0;
     })
+
+    mui(".mui-content").on("drag",".mui-navigate-right",function(e){
+
+        var dir=e.detail.direction;
+        var x=e.detail.deltaX;
+
+        var left=init+x;
+
+        if(dir=="left"){
+            if(left<-100){
+                left=-100;
+            }
+        }
+        if(dir=="right"){
+            if(left>0){
+                left=0;
+            }
+        }
+
+        this.style.left=left+"px";
+
+    })
+
+    $scope.del=function(id){
+
+        Todo=Todo.filter(function(val){
+          return val.id!=id
+        })
+
+        $scope.data=Todo;
+
+        localStorage.todo=JSON.stringify(Todo);
+    }
+
 
 }]).controller("todoAdd",["$scope","fns","Todo",function($scope,fns,Todo){
     $scope.back=fns.back;
@@ -138,6 +213,91 @@ angular.module("controller",["service"])
         localStorage.todo=JSON.stringify(Todo);
         $scope.con="";
     }
+}).controller("log",function($scope,fns){
+    $scope.back=fns.back;
+ document.querySelector("html").style.fontSize=document.documentElement.clientWidth/750*100+"px";
+}).controller("logWrite",function($scope,fns,LogInfo,$http,Me){
+   $scope.back=fns.back;
+   $scope.acctname=LogInfo.acctname;
+   $scope.acctid=LogInfo.acctid;
+   $scope.submit=function(){
+       var done=$scope.done;
+       var undo=$scope.undo;
+       var doing=$scope.doing;
+       var acctid=$scope.acctid;
+       var sendid=Me.id;
+
+       $http({url:"/ajax/addLog",params:{
+           done,undo,doing,acctid,sendid
+       }}).then(function(){
+
+       })
+
+   }
+
+
+
+
+
+}).controller("select",function ($scope,Data,LogInfo,fns) {
+    $scope.back=fns.back;
+    $scope.add=function(e,id,name){
+        if(e.target.flag){
+            e.target.style.color = "";
+            LogInfo.acctid = null;
+            LogInfo.acctname = null;
+            e.target.flag=false;
+        }else {
+            e.target.style.color = "red";
+            LogInfo.acctid = id;
+            LogInfo.acctname = name;
+            e.target.flag=true;
+        }
+    }
+    Data.then(function(e){
+        var data=e.data;
+        var arr=[];
+
+        //1.  把部门获取到
+        var bumen=[];
+        for(var i=0;i<data.length;i++){
+            if(diff(bumen,data[i].bname)){
+                bumen.push(data[i].bname);
+            }
+        }
+
+
+        for(var i=0;i<bumen.length;i++){
+            var obj={};
+            obj.parent=bumen[i];
+            obj.son=[];
+            for(var j=0;j<data.length;j++){
+                if(bumen[i]==data[j]["bname"]){
+                    obj.son.push(data[j]);
+
+                }
+            }
+
+            arr.push(obj);
+
+
+        }
+        console.log(arr);
+
+        $scope.data=arr;
+
+
+        function diff(arr,newv){
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]==newv){
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+    })
 })
 
 

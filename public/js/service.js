@@ -12,4 +12,9 @@ angular.module("service",[])
 
 }]).factory("Todo",["$http",function($http){
      return localStorage.todo?JSON.parse(localStorage.todo):[];
-}])
+}]).factory("LogInfo",function(){
+    var obj={};
+    return obj;
+}).factory("Me",function($http){
+    return localStorage.Me?JSON.parse(localStorage.Me):{};
+})

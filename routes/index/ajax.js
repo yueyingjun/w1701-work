@@ -79,14 +79,78 @@ router.get("/addLog",function (req,res) {
     var undo=req.query.undo;
     var doing=req.query.doing;
     var acctid=req.query.acctid;
-    var sendid=req.query.id;
+    var sendid=req.query.sendid;
 
-    var sql=`insert into loges (done,undo,doing,acctid,sendid) values ('${done}','${undo}','${doing}',${acctid},${sendid})`;
+    var sql=`insert into loges (done,nodo,doing,acctid,sendid) values ('${done}','${undo}','${doing}',${acctid},${sendid})`;
     console.log(sql);
-    mysql.query(sql,function(err){
+    mysql.query(sql,function(err,result){
         if(err){
             console.log("Err");
+        }else{
+            if(result.affectedRows>0){
+                res.send("ok");
+            }
         }
     })
 })
+
+router.get("/sendList",function(req,res){
+     var sendid=req.query.sendid;
+     let $sql="select * from loges where sendid="+sendid;
+
+     console.log($sql);
+     mysql.query($sql,function (err,result) {
+            if(err){
+                console.log(err);
+            }else{
+                res.send(JSON.stringify(result));
+            }
+     })
+})
+
+router.get("/logout",function(req,res){
+    res.clearCookie();
+    res.send("ok");
+})
+router.get("/reset",function(req,res){
+    var pass=md5(req.query.pass);
+    var pass1=md5(req.query.pass1);
+    var pass2=md5(req.query.pass2);
+    var id=req.query.id;
+    if(pass1!==pass2){
+        res.send("err");
+        return;
+    }
+
+    var sql=`select pass from member where id=${id} and pass='${pass}'`;
+
+    mysql.query(sql,function(err,result){
+        if(err){
+            console.log(err);
+        }else{
+            if(result.length>0){
+
+                var sql=`update member set pass='${pass1}' where id=${id}`;
+
+                mysql.query(sql,function(err,result){
+                if(err){
+                    console.log(err);
+                }else{
+                    if(result.affectedRows>0){
+                        res.clearCookie();
+                        res.send("ok");
+                    }
+                }
+
+                })
+
+            }else{
+                res.send("err");
+            }
+        }
+    })
+
+
+})
+
 module.exports=router;

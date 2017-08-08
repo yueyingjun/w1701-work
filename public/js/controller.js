@@ -36,8 +36,6 @@ angular.module("controller",["service"])
     }
 }]).controller("login",function ($scope,$http,Me) {
 
-
-
     $scope.login=function() {
         var name=$scope.name;
         var pass=$scope.pass;
@@ -216,10 +214,19 @@ angular.module("controller",["service"])
 }).controller("log",function($scope,fns){
     $scope.back=fns.back;
  document.querySelector("html").style.fontSize=document.documentElement.clientWidth/750*100+"px";
-}).controller("logWrite",function($scope,fns,LogInfo,$http,Me){
+}).controller("logWrite",function($scope,fns,$http,Me,Data){
+
+  $scope.isshow=true;
+
+  $scope.show=function(){
+      $scope.isshow=false;
+  }
+    $scope.hide=function(){
+        $scope.isshow=true;
+    }
+
+
    $scope.back=fns.back;
-   $scope.acctname=LogInfo.acctname;
-   $scope.acctid=LogInfo.acctid;
    $scope.submit=function(){
        var done=$scope.done;
        var undo=$scope.undo;
@@ -229,31 +236,41 @@ angular.module("controller",["service"])
 
        $http({url:"/ajax/addLog",params:{
            done,undo,doing,acctid,sendid
-       }}).then(function(){
-
+       },dataType:"text"}).then(function(e){
+            if(e.data=="ok"){
+                $scope.done="";
+                $scope.undo="";
+                $scope.doing="";
+                $scope.acctid="";
+                $scope.acctname="";
+            }else{
+                $scope.err=true;
+            }
        })
 
    }
 
+   $scope.err=false;
 
 
 
 
-}).controller("select",function ($scope,Data,LogInfo,fns) {
-    $scope.back=fns.back;
     $scope.add=function(e,id,name){
         if(e.target.flag){
             e.target.style.color = "";
-            LogInfo.acctid = null;
-            LogInfo.acctname = null;
+            $scope.acctid = null;
+            $scope.acctname = null;
             e.target.flag=false;
         }else {
             e.target.style.color = "red";
-            LogInfo.acctid = id;
-            LogInfo.acctname = name;
+            $scope.acctid = id;
+            $scope.acctname = name;
             e.target.flag=true;
         }
     }
+
+
+
     Data.then(function(e){
         var data=e.data;
         var arr=[];
@@ -298,6 +315,52 @@ angular.module("controller",["service"])
         }
 
     })
+
+
+
+
+
+}).controller("select",function ($scope,Data,LogInfo,fns) {
+    $scope.back=fns.back;
+
+
+}).controller("logCat",function($scope,fns){
+    $scope.back=fns.back;
+}).controller("sendList",function($scope,fns,$http,Me){
+    $scope.back=fns.back;
+    console.log(Me.id);
+    $http({url:"/ajax/sendList",params:{sendid:Me.id}}).then(function(e){
+        $scope.data=e.data;
+
+    })
+
+}).controller("setting",function($scope,$http,fns){
+    $scope.back=fns.back;
+        $scope.logout=function(){
+            $http({url:"/ajax/logout","dataType":"text"}).then(function(e){
+                    if(e.data=="ok"){
+                           location.href=
+       "#!/login" ;            }
+            })
+        }
+}).controller("reset",function ($scope,$http,Me,fns) {
+
+    $scope.back=fns.back;
+    $scope.submit=function(){
+    var pass=$scope.pass;
+    var pass1=$scope.pass1;
+    var pass2=$scope.pass2;
+    var id=Me.id;
+    var obj={pass,pass1,pass2,id}
+    $http({url:"/ajax/reset",params:obj,dataType:"text"}).then(function (e) {
+            if(e.data=="ok"){
+                location.href="#!/login";
+            }
+    })
+
+    }
+
 })
+
 
 

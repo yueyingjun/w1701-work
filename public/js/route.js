@@ -39,5 +39,17 @@ angular.module("route",["ngRoute"])
      }).when("/login",{
          templateUrl:"/tpl/login.html",
          controller:"login"
+     }).when("/log/cat",{
+         templateUrl:"/tpl/logCat.html",
+         controller:"logCat",
+     }).when("/log/sendList",{
+         templateUrl:"/tpl/sendList.html",
+         controller:"sendList",
+     }).when("/setting",{
+         templateUrl:"/tpl/setting.html",
+         controller:"setting",
+     }).when("/reset",{
+         templateUrl:"/tpl/reset.html",
+         controller:"reset",
      })
 }])

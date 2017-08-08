@@ -1,0 +1,21 @@
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-icon mui-icon-left-nav mui-pull-left" ng-click="back()"></a>
+    <h1 class="mui-title">重设密码</h1>
+</header>
+<div class="mui-content">
+    <div class="mui-input-row">
+        <label>旧密码</label>
+        <input type="text" class="mui-input-password" placeholder="旧密码" ng-model="pass">
+    </div>
+    <div class="mui-input-row">
+        <label>新密码</label>
+        <input type="text" class="mui-input-password" placeholder="原密码" ng-model="pass1">
+    </div>
+    <div class="mui-input-row">
+        <label>确认密码</label>
+        <input type="text" class="mui-input-password" placeholder="确认密码" ng-model="pass2">
+    </div>
+    <div class="mui-button-row">
+        <a type="button" class="mui-btn mui-btn-primary" href="javascript:;" ng-click="submit()">确认</a>
+    </div>
+</div>
